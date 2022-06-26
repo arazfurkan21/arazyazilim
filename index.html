@@ -1,190 +1,26 @@
+
 <!DOCTYPE html>
 <html>
- 
     <head>
- 
-        <title>GMAIL</title>
-        
-        <style>
-          *{
-    box-sizing:border-box;
-    margin:0;
-}
-
-body {
-    background-image: url(https://ssl.gstatic.com/ui/v1/icons/mail/themes/desk/bg2_1920x1200.jpg);
-    margin-left:7%;
-    margin-right:7%;
-    width:auto;
-}
-
-.logo{
-    width:50%;
-    height:40%;
-    margin-top:8px;
-    display:inline-block ;
-}
-
-#num-count{
-    color:red;
-    background-color:orange;
-    border-radius:50%;
-    font-size:20px;
-    padding:5px;
-    padding-left:8px;
-    padding-right:8px;
-}
-
-#int{
-    color:white;
-    font-weight:800;
-    margin-left:10px;
-    font-size:30px;
-}
-
-.ricerca{
-    margin-top:2%;
-    width:40%;
-    border: 1px solid;
-}
-
-.invio{
-    border: 1px solid;
-}
-
-#linea{
-background-color:white;
-}
-
-#linea2{
-background-color:white;
-margin-top:7px;
-}
-
-div{
-    display:inline-block ;
-}
-
-.stella{
-    color:orange;
-    font-size:20px;
-}
-
-#mailric{
-    margin-top:3%;
-    margin-bottom:3%;
-    color:white;
-    font-weight:bold;
-    font-style:italic;
-    font-size:20px;
-}
-
-.lemail{
-    margin-top:2%;
-    padding:2px;
-    display:inline-block ;
-    font-size:14px;
-    background-color:lightgrey;
-}
-
-.oggetto{
-    font-weight:bold;
-    width:55%;
-    margin-bottom:2%;
-    display:inline-block ;
-}
-
-.corpo{
-    display:inline-block;
-    color:grey;
-    width:41%;   
-    margin-top:5px;
-}
-
-#finale{
-   color:white; 
-   font-weight:bold;
-   text-align:center;
-   margin-top:10px;
-  
-}
-
-#scrittagmail{
-    font-size:30px;
-    text-decoration:underline ;
-}
-
-.foto_profilo{
-    width:100px;
-    height:100px;
-    display:block ;
-    margin:0 auto;
-    margin-top:5%;
-    border-radius:50%;
-}
-
-.nomeutente{
-    color:white;
-    text-align:center ;
-    margin-top:5px;
-    font-weight:bold;
-    font-size:15px;
-}
-
-#nomute{
-    width:80px;
-    margin:auto ;
-    background-color:white;
-}  
-        </style>
+        <title>Page Title</title>
     </head>
-    
     <body>
-      
-        <div> <!-- LOGO-->
-            <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevyqhd1Bahh40uOctSkBP4Q-4FEMU1QGVdg&usqp=CAU">
-            
-            <span id="int">Le tue e-mail</span>
-        </div>
+   <p id="battery"> </p>
+   <script type="text/javascript">
+   var percent=navigator.getBattery().then(function(battery) {document.write(`sarjiniz ${battery.level*100}%`);
+   });
+   var showinfo=document.getElementById('battery');
+   showinfo.innerHTML=percent;
+   
+       
+
+       
+   
+       </script>
+   
+   
+   
+   
         
-        
-        <hr id="linea">
-        
-        <nav> <!--PULSANTE RICERCA-->
-            <input type="Text" placeholder="Cerca" class="ricerca">
-                
-                <input type="submit" value="VAI" class="invio">
-                <p id="mailric">Hai <span id="num-count">9</span> E-mail non lette:</p>
-                <hr id="linea">
-        </nav>
-        
-        <!--TUTTE LE MAIL-->
-         <main class="lemail">   
-                 <!-- EMAIL 1-->   
-                <div class="oggetto">
-                    <input type="checkbox">
-                    <span class="stella">&#9733</span>
-                    Questo è l'oggetto dell'email      </div>
-                <div class="corpo">
-                    Questo è il corpo della e-mail          </div>
-                
-                <!--EMAIL 2-->
-                <div class="oggetto">
-                    <input type="checkbox">
-                    <span class="stella">&#9733</span>
-                    Oggetto piccolo      </div>
-                <div class="corpo">
-                    Questo è il corpo della e-mail          </div>
-                    
-                    <!-- EMAIL 3-->   
-                <div class="oggetto">
-                    <input type="checkbox">
-                    <span class="stella">&#9733</span>
-                    Questo è l'oggetto dell'email      </div>
-                <div class="corpo">
-                    Questo è il corpo della e-mail          </div>
-                    
-                    <!-- EMAIL 4-->   
-                <div class="oggetto">
-                    <input type="checkbox">
-                    <span class="stella">&#9733</span>
+    </body>
+</html>

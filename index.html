@@ -1,26 +1,137 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Page Title</title>
-    </head>
-    <body>
-   <p id="battery"> </p>
-   <script type="text/javascript">
-   var percent=navigator.getBattery().then(function(battery) {document.write(`sarjiniz ${battery.level*100}%`);
-   });
-   var showinfo=document.getElementById('battery');
-   showinfo.innerHTML=percent;
-   
-       
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>araz yazılım</title>
+<link rel="stylesheet" href="style.css">
 
-       
-   
-       </script>
-   
-   
-   
-   
-        
-    </body>
+
+<style>
+* { background-color: red;
+margin: 0;
+padding: 0;
+max-width: 700px;
+}
+
+ul{
+
+padding: 0;
+margin: 0;
+list-style: none;
+margin-left: 40px;
+margin-right: 40px;
+
+}
+
+ul#main li ul{
+    display: none;
+position: absolute;
+left: 0;
+top: 50px;
+
+}
+
+ul#main li {
+
+float: left;
+position: relative;
+width: 100px;
+margin-left: 5px;
+margin-top: 20px;
+}
+ul li a {
+display: block;
+min-width: 50px;
+width: 100px;
+height: 50px;
+background-color: red;
+text-align: center;
+color: aqua;
+text-decoration: none;
+line-height: 40px;
+
+}
+ul li a:hover{
+
+    background-color: blue;
+}
+ul#main li:hover ul {
+
+
+    display: block;
+
+
+
+}
+.cerceve{
+height: 100px;
+max-width: 700px;
+width: 800px ;
+background-color: white;
+text-align: center;
+}
+
+
+
+.genel{ background-color: aqua;
+height: 1200px;
+width: 1000px;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+</head>
+<body><div class="genel">
+<div class="cerceve">
+<ul id="main">
+
+ <li><a href="">anasayfa1</a></li>
+ <li><a href="">anasayfa0</a>
+    <ul>
+       <li><a href="">anasayfa0</a></li>
+       <li><a href="">anasayfa0</a></li>
+   </ul> </li>
+ <li><a href="">anasayfa3</a></li>
+ <li><a href="">anasayfa4</a></li>
+ <li><a href="">anasayfa5</a></li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
 </html>

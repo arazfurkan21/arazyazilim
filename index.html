@@ -26,7 +26,7 @@ function mailgonder(){
 
     $mail->Body = "mesaj";
     $mail->AltBody = strip_tags("mesaj");
-    $mail->AddAddress("deneme@mesutd.com");
+    $mail->AddAddress("arazf025.gmail.com");
     return ($mail->Send())?true:false;
     $mail->ClearAddresses();
     $mail->ClearAttachments();

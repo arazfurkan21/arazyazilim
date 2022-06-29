@@ -1,82 +1,176 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=
-    
-    
-    
-    
-    , initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>araz yazılım</title>
+<link rel="stylesheet" href="style.css">
+
+
+
+
 </head>
-<body>
-   
+
+<body><div class="genel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="ustcerceve">
+
+ <ul id="main">
+ <li><a href="" class="activee">anasayfa1</a></li>
+ <li><a href="">anasayfa0</a>
+  <ul>
+    <li>
+       <li><a href="">html</a></li>
+       <li><a href="">css</a></li>
+       <li><a href="">html 5</a></li>
+       <li><a href="">js</a></li>
+         
+  </li></ul>
+ <li><a href="">anasayfa3</a></li>
+ <li><a href="">anasayfa4</a></li>
+ <li><a href="">anasayfa5</a></li>
+  </ul>
+
+</div>
+
+
+
+
+<div id="blog"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="alttaban">
+  <div class="alt1">
+     <ul>
+   <li><a class="activee" href="#index">Ana sayfa</a></li>
+    
+      <li><a href="#hakkımızda">Hakkımızda</a></li>
+    
+      <li><a href="#urunler">Ürünler</a></li>
+    
+      <li><a href="#referanslar">Referanslar</a></li>
+    
+      
+    </ul>
+
+  </div>
+  <div class="alt2">
+    <ul>
+      <li><a class="active" href="#index">Ana sayfa</a></li>
+    
+      <li><a class="activee" href="#hakkımızda">Hakkımızda</a></li>
+    
+      <li><a href="#urunler">Ürünler</a></li>
+    
+      <li><a href="#referanslar">Referanslar</a></li>
+    
+    
+    </ul>
+
+
+  </div>
+  <div class="alt3">
+    <ul>
+      <li><a class="active" href="#index">Ana sayfa</a></li>
+    
+      <li><a href="#hakkımızda">Hakkımızda</a></li>
+    
+      <li><a class="activee" href="#urunler">Ürünler</a></li>
+    
+      <li><a href="#referanslar">Referanslar</a></li>
+    
+
+    </ul>
+
+  </div>
+  <div class="alt4">
+    <ul>
+      <li><a  href="#index">Ana sayfa</a></li>
+    
+      <li><a href="#hakkımızda">Hakkımızda</a></li>
+    
+      <li><a href="#urunler">Ürünler</a></li>
  
-<?php
-//email gönderimi için gerekli olan dosyaları dahil ediyoruz.
-include 'PHPMailer/class.phpmailer.php';
-include 'PHPMailer/class.smtp.php';
-
-//İletişim formumuzdan gelen bilgileri alıyoruz.
-$adisoyadi=$_POST['adisoyadi'];
-$telefon=$_POST['telefon'];
-$eposta=$_POST['eposta'];
-$mesaj=$_POST['mesaj'];
+      <li><a class="activee" href="#referanslar">Referanslar</a></li>
+    
  
-$mail = new PHPMailer(); //ilgili PHPMailer class'ımızdan bir nesne türetiyoruz.
-$mail->IsSMTP();
-$mail->SMTPAuth = true; 
-$mail->Host = 'smtp.gmail.com'; //SMTP için kullanılacak sunucu adresi
-$mail->Port = 587; //TLS protokolünün kullanacağı port numarası
-$mail->SMTPSecure = 'tls'; //kullanacağımız güvenlik protokolü SSL veya TLS olabilir.
-$mail->Username = 'oguzhantas@gmail.com'; //Email gönderecek adres
-$mail->Password = '***********'; ////Email gönderecek adresin şifresi
-$mail->SetFrom($mail->Username, 'Oğuzhan TAŞ');
-$mail->AddAddress('Gidecek email adresi', '
-'); //Bu emaili gideceği e-posta adresi
-$mail->CharSet = 'UTF-8'; //Karakterlerin düzgün görünmesi için utf-8 ekliyoruz.
-$mail->Subject ="Web sitesinin iletişim bölümünden mesaj var"; //emailimizin konusu
+    </ul>
 
-//email içeriğimiz
-$icerik = "Gönderen:".$adisoyadi.
- " Telefon:".$telefon.
- " E-posta:".$eposta.
- " Mesaj:".$mesaj ;
- 
-$mail->MsgHTML($icerik);
-
-//Artık emailimizi gönderiyoruz, yukarıdaki bilgilerde bir hata varsa bu satırda hata verecektir.
-if($mail->Send()) {
-     //E-posta gönderildi
-     echo "Email başarıyla gönderildi";
-} else {
-    // Bir hata oluştu, hata mesajı yazdırıyoruz
-    echo $mail->ErrorInfo;
-}
- 
-?>
-
-
-
-
-
-
-    <form action="mail.php" method="post">
-        Adınız: <br/>
-        <input type="text" name="ad" /><br/>
-        E-Posta adresiniz: <br/>
-        <input type="text" name="eposta" /><br/>
-        Konu: <br/>
-        <input type="text" name="konu" /><br/>
-        Mesajınız: <br/>
-        <textarea name="mesaj"></textarea><br/>
-        <input type="submit" value="Mesajı Gönder" />
-        </form>
+  </div>
+</div>
 
 
 
@@ -84,5 +178,30 @@ if($mail->Send()) {
 
 
 
+  
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div id="enalt">
+  <h1 style="color: white;">Umutsuzlar</h1><p>@arazyazılım tarafından editlenmiistir </p>
+</div>
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3912975481200657"
+     crossorigin="anonymous"></script>
 </body>
+
+
 </html>

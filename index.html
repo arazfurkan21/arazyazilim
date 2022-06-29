@@ -1,49 +1,41 @@
-
-<?php
-use PHPMailer\PHPMailer\PHPMailer;
-require 'vendor/autoload.php';
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->Host = 'smtp.hostinger.com';
-    $mail->Port = 587;
-    $mail->SMTPAuth = true;
-    $mail->Username = 'test@hostinger-tutorials.com';
-    $mail->Password = 'EMAIL_ACCOUNT_PASSWORD';
-    $mail->setFrom('test@hostinger-tutorials.com', 'Mr. Drago');
-    $mail->addAddress('arazf025@gmail.com', 'Receiver Name');
-    if ($mail->addReplyTo($_POST['email'], $_POST['name'])) {
-        $mail->Subject = 'PHPMailer contact form';
-        $mail->isHTML(false);
-        $mail->Body = <<<EOT
-Email: {$_POST['email']}
-Name: {$_POST['name']}
-Message: {$_POST['message']}
-EOT;
-        if (!$mail->send()) {
-            $msg = 'Sorry, something went wrong. Please try again later.';
-        } else {
-            $msg = 'Message sent! Thanks for contacting us.';
-        }
-    } else {
-        $msg = 'Share it with us!';
-    }
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Contact form</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Do You Have Anything in Mind?</h1>
-<?php if (!empty($msg)) {
-    echo "<h2>$msg</h2>";
-} ?>
-<form method="POST">
-    <label for="name">Name: <input type="text" name="name" id="name"></label><br><br>
-    <label for="email">Email: <input type="email" name="email" id="email"></label><br><br>   
-    <label for="message">Message: <textarea name="message" id="message" rows="8" cols="20"></textarea></label><br><br>
-    <input type="submit" value="Send">
-</form>
+<?php
+function mailgonder(){
+    require "inc/class.phpmailer.php"; // PHPMailer dosyamızı çağırıyoruz  
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->From     = "deneme@mesutd.com"; //Gönderen kısmında yer alacak e-mail adresi  
+    $mail->Sender   = "deneme@mesutd.com";
+    $mail->FromName = "Web Mesaj";
+    $mail->Host     = "mail.mesutd.com"; //SMTP server adresi  
+    $mail->SMTPAuth = true;
+    $mail->Username = "deneme@mesutd.com"; //SMTP kullanıcı adı  
+    $mail->Password = "*****"; //SMTP şifre  
+    $mail->SMTPSecure="";
+    $mail->Port = "587";
+    $mail->CharSet = "utf-8";
+    $mail->WordWrap = 50;
+    $mail->IsHTML(true); //Mailin HTML formatında hazırlanacağını bildiriyoruz.  
+    $mail->Subject  = "Konu";
+
+    $mail->Body = "mesaj";
+    $mail->AltBody = strip_tags("mesaj");
+    $mail->AddAddress("deneme@mesutd.com");
+    return ($mail->Send())?true:false;
+    $mail->ClearAddresses();
+    $mail->ClearAttachments();
+}
+
+if(mailgonder()) echo "başarılı";
+else echo "olmadı";
+
+
+?>
 </body>
-</html>
+    </html>

@@ -1,4 +1,22 @@
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    
+    
+    
+    
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+ 
 <?php
 //email gönderimi için gerekli olan dosyaları dahil ediyoruz.
 include 'PHPMailer/class.phpmailer.php';
@@ -43,3 +61,28 @@ if($mail->Send()) {
  
 ?>
 
+
+
+
+
+
+    <form action="mail.php" method="post">
+        Adınız: <br/>
+        <input type="text" name="ad" /><br/>
+        E-Posta adresiniz: <br/>
+        <input type="text" name="eposta" /><br/>
+        Konu: <br/>
+        <input type="text" name="konu" /><br/>
+        Mesajınız: <br/>
+        <textarea name="mesaj"></textarea><br/>
+        <input type="submit" value="Mesajı Gönder" />
+        </form>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,118 +1,45 @@
 
+<?php
+//email gönderimi için gerekli olan dosyaları dahil ediyoruz.
+include 'PHPMailer/class.phpmailer.php';
+include 'PHPMailer/class.smtp.php';
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=
-    
-    
-    
-    
-    , initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    
-    require 'src/Exception.php';
-    require 'src/PHPMailer.php';
-    require 'src/SMTP.php';
-    
-    
-    $email = isset($_POST["email"]) ?$_POST["email"] : null;
-    
-    $subject = isset($_POST["email"]) ?$_POST["subject"] : konu;
-    
-    
-    $content = isset($_POST["content"]) ?$_POST["content"] : konu;
-     if (!$email){
-    echo "e posta gırrrr" }
-    
-    
-    elseif(!$content){
-    echo "ıccrek"
-    
-    }
-    $mail=new PHPMailer(true);
-    
-    
-     
-    
-    
-    
-    try {
-        //Server settings
-        $mail->SMTPDebug = 2;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'arazf025@gmail.com';                     //SMTP username
-        $mail->Password   = 'arazf025';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->setlanguage("tr")
-        //Recipients
-        $mail->setFrom('arazf025@gmail.com', 'araz');
-        $mail->addAddress($email);     //Add a recipient
-        $mail->addAddress('ellen@example.com');               //Name is optional
-        $mail->addReplyTo('info@example.com', 'Information');
-        $mail->addCC('cc@example.com');
-        $mail->addBCC('bcc@example.com');
-    
-    
-      if(isset($_FİLES["attachment"]["name"])){
-    $email-> addattachment($_FİLES["attachment"]["tmp-name"].$_FİLES["attachment"]["name"]);
-    
-      }
-    
-    
-    
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $subject;
-        $mail->Body    = $content;
-        $mail->send():
-    echo "basarılı";
-    
-    }
-    catch(Exception $e) {
-    echo $e-> errorMessage;
-    
-    
-    
-    }
-    
-    
-    
-    
-    ?>
-
-
+//İletişim formumuzdan gelen bilgileri alıyoruz.
+$adisoyadi=$_POST['adisoyadi'];
+$telefon=$_POST['telefon'];
+$eposta=$_POST['eposta'];
+$mesaj=$_POST['mesaj'];
  
+$mail = new PHPMailer(); //ilgili PHPMailer class'ımızdan bir nesne türetiyoruz.
+$mail->IsSMTP();
+$mail->SMTPAuth = true; 
+$mail->Host = 'smtp.gmail.com'; //SMTP için kullanılacak sunucu adresi
+$mail->Port = 587; //TLS protokolünün kullanacağı port numarası
+$mail->SMTPSecure = 'tls'; //kullanacağımız güvenlik protokolü SSL veya TLS olabilir.
+$mail->Username = 'oguzhantas@gmail.com'; //Email gönderecek adres
+$mail->Password = '***********'; ////Email gönderecek adresin şifresi
+$mail->SetFrom($mail->Username, 'Oğuzhan TAŞ');
+$mail->AddAddress('Gidecek email adresi', '
+'); //Bu emaili gideceği e-posta adresi
+$mail->CharSet = 'UTF-8'; //Karakterlerin düzgün görünmesi için utf-8 ekliyoruz.
+$mail->Subject ="Web sitesinin iletişim bölümünden mesaj var"; //emailimizin konusu
 
+//email içeriğimiz
+$icerik = "Gönderen:".$adisoyadi.
+ " Telefon:".$telefon.
+ " E-posta:".$eposta.
+ " Mesaj:".$mesaj ;
+ 
+$mail->MsgHTML($icerik);
 
+//Artık emailimizi gönderiyoruz, yukarıdaki bilgilerde bir hata varsa bu satırda hata verecektir.
+if($mail->Send()) {
+     //E-posta gönderildi
+     echo "Email başarıyla gönderildi";
+} else {
+    // Bir hata oluştu, hata mesajı yazdırıyoruz
+    echo $mail->ErrorInfo;
+}
+ 
+?>
 
-
-    <form action="mail.php" method="post">
-        Adınız: <br/>
-        <input type="text" name="ad" /><br/>
-        E-Posta adresiniz: <br/>
-        <input type="text" name="eposta" /><br/>
-        Konu: <br/>
-        <input type="text" name="konu" /><br/>
-        Mesajınız: <br/>
-        <textarea name="mesaj"></textarea><br/>
-        <input type="submit" value="Mesajı Gönder" />
-        </form>
-
-
-
-
-
-
-
-</body>
-</html>

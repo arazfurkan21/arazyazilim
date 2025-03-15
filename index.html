@@ -1,140 +1,53 @@
-<!-- Created by Abdur Rabby-->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style type="text/css">
-
-body{
-background:url(https://i.ibb.co.com/tymzq7j/image.png);
-background-size:cover;
-background-repeat:no-repeat;
-background-attachment:fixed;
-display:flex;
-align-items:center;
-justify-content:center;
-
-
-}
-/*contain box*/
-.box{
-width:290px;
-height:480px;
-border-radius:4%;
-background:#ffffff26;
-backdrop-filter:blur(1px);
-}
-
-h1{text-align:center;
-color:white;
-font-weight:200;
-font-size:23px;
-font-family:;
-}
-/*image*/
-img{
-border-radius:50%;
-margin:30px 80px 10px;
-outline:1px solid white;
-outline-offset:3px;
-background:#ffffff32;
-backdrop-filter:10px;
-display:inline-block;
-
-
-}
-i{
-color:orange;
-
-padding:7px;
-text-align:center;
-font-size:34px;
-width:50px;
-margin:7px;
-border-radius:20%;
-box-sizing:border-box;
-
-background:#ffffff30;
-
-
-}
-
-</style>
-
-
-
-
-<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP & ISP Info</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-image: url("https://giffiles.alphacoders.com/360/36010.gif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        span {
+            text-shadow: 0 0 20px red;
+            font-weight: bold;
+        }
+        h2 {
+            color: green;
+            text-shadow: 0 0 20px red;
+        }
+        p {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-<div class="box">
-<img style="width:120px;height:120px;" src="
-https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl1UTTG8TrXGE_07-M9NCGIvo0VI_Kvd2cmWCsbhnytBFmTGQT-T_Ldcc&s=10
-
-
-">
-<h1 style=""> Araz Furkan </h1>
-
-
-<div style="margin:10px 0px 0px 10px;"class="a">
-
-<i  class="fa-brands fa-facebook"></i>
-<a href="https://www.instagram.com/araz_furkann" ><i class="fa-brands fa-square-instagram"
-
-    >
+    
+    <h2>Your City Is: <mark><span id="city">Loading...</span></mark></h2>
     
 
-</i>
+    <script>
+        console.log("Created by ManabJB, APIs can be found on https://ipinfo.io");
+        console.log("For more info about the dev: https://github.com/manabjb");
 
-</a>
-<i class="fa-brands fa-square-x-twitter"></i>
-<i class="fa-brands fa-linkedin"></i>
-</div>
+        // IP, ISP ve Şehir Bilgisini Al
+        $.getJSON("http://ipinfo.io/json", function(data) {
+            $("#isp").text(data.isp);  // ISP sağlayıcısını yazdır
+            $("#city").text(data.city); // Şehir bilgisi
+            $("#ip").text(data.query);  // IP adresini yazdır
+        });
 
-
-<h3 style="font-weight:150;text-align:center;color:white;">Takip et</h3></h3>
-
-<button>
-
-<span class="material-symbols-rounded">
-follow_the_signs
-</span>
-  <a style="color:red" href="mailto: arazf025@gmail.com">bize ulasın</a>>
-
-</button>
-<style>
-button{
-background:#ffffff43;
-color:white;
-
-outline:none !important;
-border:none;
-box-shadow:0px 0px 5px 1px white;
-border-radius:59px;
-display:flex;
-margin:23px 32px;
-padding:10px 56px;
-font-size:23px;
-font-weight:400;
-font-family:monospace;
-
-}
-.material-symbols-rounded{
-
-font-size:24px;
-padding-right:4px;
-}
-
-
-
-
-
-</style>
-
-
-
-</div>
+        // Kullanıcıya mesajlar göster
+        let print = "Plzzz upvote me";
+        alet(print);
+        alert("It also requires a good internet connection to load the images...");
+    </script>
 </body>
 </html>

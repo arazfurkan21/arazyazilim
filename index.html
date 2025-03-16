@@ -9,7 +9,7 @@
     <h2>Kullanıcı Cihaz Bilgileri</h2>
     <p id="deviceInfo"></p>
 
-    <script src="https://api.ipify.org/?format=jsonp&callback=getIP">
+    <script>
         function getDeviceInfo() {
             let info = `
                 Tarayıcı: ${navigator.userAgent} <br>
@@ -23,8 +23,7 @@
         getDeviceInfo();
 
 
-        function getIP(ipADDR) {
-    document.write(ipADDR.ip)
+       
         
     </script>
 </body>

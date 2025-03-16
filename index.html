@@ -1,53 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP & ISP Info</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            background-image: url("https://giffiles.alphacoders.com/360/36010.gif");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            text-align: center;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        span {
-            text-shadow: 0 0 20px red;
-            font-weight: bold;
-        }
-        h2 {
-            color: green;
-            text-shadow: 0 0 20px red;
-        }
-        p {
-            color: red;
-        }
-    </style>
+    <title>Cihaz Bilgileri</title>
 </head>
 <body>
-    
-    <h2>Your City Is: <mark><span id="city">Loading...</span></mark></h2>
-    
+    <h2>Kullanıcı Cihaz Bilgileri</h2>
+    <p id="deviceInfo"></p>
 
     <script>
-        console.log("Created by ManabJB, APIs can be found on https://ipinfo.io");
-        console.log("For more info about the dev: https://github.com/manabjb");
-
-        // IP, ISP ve Şehir Bilgisini Al
-        $.getJSON("http://ipinfo.io/json", function(data) {
-            $("#isp").text(data.isp);  // ISP sağlayıcısını yazdır
-            $("#city").text(data.city); // Şehir bilgisi
-            $("#ip").text(data.query);  // IP adresini yazdır
-        });
-
-        // Kullanıcıya mesajlar göster
-        let print = "Plzzz upvote me";
-        alet(print);
-        alert("It also requires a good internet connection to load the images...");
+        function getDeviceInfo() {
+            let info = `
+                Tarayıcı: ${navigator.userAgent} <br>
+                Platform: ${navigator.platform} <br>
+                Dil: ${navigator.language} <br>
+                Çözünürlük: ${screen.width}x${screen.height}
+            `;
+            document.getElementById("deviceInfo").innerHTML = info;
+        }
+        
+        getDeviceInfo();
     </script>
 </body>
 </html>

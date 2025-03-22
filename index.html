@@ -1,51 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamera ve Gmail Gönderme</title>
+    <title>Firebase Mesaj Gönderme</title>
+    <!-- Firebase SDK'larını ekle -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"></script>
 </head>
 <body>
-    <h2>Kamera Görüntüsü</h2>
-    <video id="kamera" autoplay></video>
-    <br>
-    <button onclick="kamerayiAc()">Kamerayı Aç</button>
-    <button onclick="fotografCek()">Fotoğraf Çek</button>
-    <br><br>
+
+    <h1>Firebase'e Mesaj Gönder</h1>
     
-    <canvas id="canvas" style="display:none;"></canvas>
-    <a id="gonderLink" style="display:none;" target="_blank">Gmail ile Gönder</a>
+    <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Mesajınızı yazın" required>
+        <button type="submit">Gönder</button>
+    </form>
+<script type="module">
 
-    <script>
-        function kamerayiAc() {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(stream => {
-                    document.getElementById("kamera").srcObject = stream;
-                })
-                .catch(error => {
-                    console.error("Kameraya erişim reddedildi:", error);
-                });
-        }
 
-        function fotografCek() {
-            let video = document.getElementById("kamera");
-            let canvas = document.getElementById("canvas");
-            let context = canvas.getContext("2d");
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // Import the functions you need from the SDKs you need
 
-            // Fotoğrafı base64 formatına çevir
-            let fotoData = canvas.toDataURL("image/png");
 
-            // Gmail için mailto linki oluştur
-            let mailtoLink = "mailto:?subject=Fotoğraf Gönderimi&body=Fotoğrafınız ektedir.%0A%0A" + fotoData;
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 
-            let gonderLink = document.getElementById("gonderLink");
-            gonderLink.href = mailtoLink;
-            gonderLink.style.display = "block";
-            gonderLink.innerText = "Gmail ile Gönder";
-        }
-    </script>
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+
+  // Your web app's Firebase configuration
+
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
+  const firebaseConfig = {
+
+
+    apiKey: "AIzaSyA2ZZ7moCVLTi3LjwToDvqPg11e9KVIMgw",
+
+
+    authDomain: "arazyazilim.firebaseapp.com",
+
+
+    databaseURL: "https://arazyazilim-default-rtdb.firebaseio.com",
+
+
+    projectId: "arazyazilim",
+
+
+    storageBucket: "arazyazilim.firebasestorage.app",
+
+
+    messagingSenderId: "911734141067",
+
+
+    appId: "1:911734141067:web:8dd3532898c8ee16ed648e",
+
+
+    measurementId: "G-93Y65NB4KZ"
+
+
+  };
+
+
+
+  // Initialize Firebase
+
+
+  const app = initializeApp(firebaseConfig);
+
+
+  const analytics = getAnalytics(app);
+
+
+</script>
+ 
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

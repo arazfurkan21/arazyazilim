@@ -8,10 +8,13 @@
 <body>
     <h2>Kamera Görüntüsü</h2>
     <video id="kamera" autoplay></video>
+    <br>
     <button onclick="kamerayiAc()">Kamerayı Aç</button>
     <button onclick="fotografCek()">Fotoğraf Çek</button>
-    <br>
-    <canvas id="canvas"></canvas>
+    <br><br>
+    
+    <canvas id="canvas" style="display:none;"></canvas>
+    <a id="indirLink" style="display:none;" download="fotoğraf.png">Fotoğrafı Kaydet</a>
 
     <script>
         function kamerayiAc() {
@@ -31,6 +34,12 @@
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Fotoğrafı indirme bağlantısı oluştur
+            let indirLink = document.getElementById("indirLink");
+            indirLink.href = canvas.toDataURL("image/png"); // Fotoğrafı PNG formatına çevir
+            indirLink.style.display = "block"; // Bağlantıyı görünür yap
+            indirLink.innerText = "Fotoğrafı Galeriye Kaydet"; // Buton olarak göster
         }
     </script>
 </body>

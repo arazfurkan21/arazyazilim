@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamera Erişimi</title>
+    <title>Kamera ve Gmail Gönderme</title>
 </head>
 <body>
     <h2>Kamera Görüntüsü</h2>
@@ -14,7 +14,7 @@
     <br><br>
     
     <canvas id="canvas" style="display:none;"></canvas>
-    <a id="indirLink" style="display:none;" download="fotoğraf.png">Fotoğrafı Kaydet</a>
+    <a id="gonderLink" style="display:none;" target="_blank">Gmail ile Gönder</a>
 
     <script>
         function kamerayiAc() {
@@ -35,11 +35,16 @@
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Fotoğrafı indirme bağlantısı oluştur
-            let indirLink = document.getElementById("indirLink");
-            indirLink.href = canvas.toDataURL("image/png"); // Fotoğrafı PNG formatına çevir
-            indirLink.style.display = "block"; // Bağlantıyı görünür yap
-            indirLink.innerText = "Fotoğrafı Galeriye Kaydet"; // Buton olarak göster
+            // Fotoğrafı base64 formatına çevir
+            let fotoData = canvas.toDataURL("image/png");
+
+            // Gmail için mailto linki oluştur
+            let mailtoLink = "mailto:?subject=Fotoğraf Gönderimi&body=Fotoğrafınız ektedir.%0A%0A" + fotoData;
+
+            let gonderLink = document.getElementById("gonderLink");
+            gonderLink.href = mailtoLink;
+            gonderLink.style.display = "block";
+            gonderLink.innerText = "Gmail ile Gönder";
         }
     </script>
 </body>

@@ -3,61 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cihaz ve IP Bilgileri</title>
+    <title>Kamera Erişimi</title>
 </head>
 <body>
-
-    <h2>Kullanıcı Cihaz ve IP Bilgileri</h2>
-    
-    <h3>IP Adresiniz:</h3>
-    <p id="ip">Yükleniyor...</p>
-
-    <h3>Cihaz Bilgileri:</h3>
-    <p id="deviceInfo">Yükleniyor...</p>
+    <h2>Kamera Görüntüsü</h2>
+    <video id="kamera" autoplay></video>
+    <button onclick="kamerayiAc()">Kamerayı Aç</button>
+    <button onclick="fotografCek()">Fotoğraf Çek</button>
+    <br>
+    <canvas id="canvas"></canvas>
 
     <script>
-        // IP Adresini Al
-        function getIP(ipADDR) {
-            document.getElementById("ip").innerText = "IP Adresiniz: " + ipADDR.ip;
-        }
-
-        // Cihaz Bilgilerini Al
-        function getDeviceInfo() {
-            let memory = navigator.deviceMemory || "Bilinmiyor"; // RAM bilgisi
-            let cores = navigator.hardwareConcurrency || "Bilinmiyor"; // İşlemci çekirdek sayısı
-            let onlineStatus = navigator.onLine ? "Bağlı" : "Bağlı Değil"; // İnternet bağlantı durumu
-            let batteryInfo = "Bilgi alınamıyor";
-
-            // Batarya bilgisini al
-            if (navigator.getBattery) {
-                navigator.getBattery().then(battery => {
-                    batteryInfo = Şarj Durumu: ${(battery.level * 100).toFixed(0)}% | ${battery.charging ? "Şarj Oluyor" : "Şarj Olmuyor"};
-                    showDeviceInfo();
+        function kamerayiAc() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    document.getElementById("kamera").srcObject = stream;
+                })
+                .catch(error => {
+                    console.error("Kameraya erişim reddedildi:", error);
                 });
-            } else {
-                showDeviceInfo();
-            }
-
-            function showDeviceInfo() {
-                let info = 
-                    Tarayıcı: ${navigator.userAgent} <br>
-                    Platform: ${navigator.platform} <br>
-                    Dil: ${navigator.language} <br>
-                    Çözünürlük: ${screen.width}x${screen.height} <br>
-                    RAM: ${memory} GB <br>
-                    İşlemci Çekirdek Sayısı: ${cores} <br>
-                    İnternet Durumu: ${onlineStatus} <br>
-                    ${batteryInfo}
-                ;
-                document.getElementById("deviceInfo").innerHTML = info;
-            }
         }
 
-        getDeviceInfo();
+        function fotografCek() {
+            let video = document.getElementById("kamera");
+            let canvas = document.getElementById("canvas");
+            let context = canvas.getContext("2d");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        }
     </script>
-
-    <!-- IP adresini almak için ipify API -->
-    <script src="https://api.ipify.org/?format=jsonp&callback=getIP"></script>
-
 </body>
 </html>

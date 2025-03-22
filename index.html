@@ -3,109 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Mesaj Gönderme</title>
-    <!-- Firebase SDK'larını ekle -->
-    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"></script>
+    <title>Firebase Kullanıcı Adı Gönderme</title>
 </head>
 <body>
 
-    <h1>Firebase'e Mesaj Gönder</h1>
+    <h1>Firebase'e Kullanıcı Adı Gönder</h1>
     
     <form id="messageForm">
-        <input type="text" id="messageInput" placeholder="Mesajınızı yazın" required>
+        <input type="text" id="usernameInput" placeholder="Kullanıcı Adı" required>
         <button type="submit">Gönder</button>
     </form>
 
+    <script type="module">
+        // Firebase modüllerini içe aktar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
 
-<script type="module">
+        // Firebase yapılandırma bilgileri
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2ZZ7moCVLTi3LjwToDvqPg11e9KVIMgw",
+            authDomain: "arazyazilim.firebaseapp.com",
+            databaseURL: "https://arazyazilim-default-rtdb.firebaseio.com",
+            projectId: "arazyazilim",
+            storageBucket: "arazyazilim.firebasestorage.app",
+            messagingSenderId: "911734141067",
+            appId: "1:911734141067:web:8dd3532898c8ee16ed648e",
+            measurementId: "G-93Y65NB4KZ"
+        };
 
-
-  // Import the functions you need from the SDKs you need
-
-
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-
-
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
-
-
-  // TODO: Add SDKs for Firebase products that you want to use
-
-
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-
-
-  // Your web app's Firebase configuration
-
-
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-
-  const firebaseConfig = {
-
-
-    apiKey: "AIzaSyA2ZZ7moCVLTi3LjwToDvqPg11e9KVIMgw",
-
-
-    authDomain: "arazyazilim.firebaseapp.com",
-
-
-    databaseURL: "https://arazyazilim-default-rtdb.firebaseio.com",
-
-
-    projectId: "arazyazilim",
-
-
-    storageBucket: "arazyazilim.firebasestorage.app",
-
-
-    messagingSenderId: "911734141067",
-
-
-    appId: "1:911734141067:web:8dd3532898c8ee16ed648e",
-
-
-    measurementId: "G-93Y65NB4KZ"
-
-
-  };
-
-
-
-  // Initialize Firebase
-
-
-  const app = initializeApp(firebaseConfig);
-
-
-  const analytics = getAnalytics(app);
-
-
-
-
-
-
-
-
-
+        // Firebase'i başlat
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
         // Formu işleme
         document.getElementById('messageForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
-            const message = document.getElementById('messageInput').value;
-            if (message) {
-                // Firebase'e mesajı yazma
-                database.ref('messages').push({
-                    text: message,
+            const username = document.getElementById('usernameInput').value;
+            if (username) {
+                // Firebase'e kullanıcı adını yazma
+                push(ref(database, 'users'), {
+                    username: username,
                     timestamp: Date.now()
                 }).then(() => {
-                    alert('Mesaj gönderildi!');
-                    document.getElementById('messageInput').value = '';
+                    alert('Kullanıcı adı gönderildi!');
+                    document.getElementById('usernameInput').value = '';
                 }).catch(error => {
-                    alert('Mesaj gönderilemedi: ' + error.message);
+                    alert('Hata oluştu: ' + error.message);
                 });
             }
         });
